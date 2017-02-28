@@ -43,8 +43,9 @@ def scrap(currency):
 					rates = row.findAll('td')
 					if rates[0].contents[0].strip() == currency:
 						for rate in rates:
-							if isfloat(rate.contents[0].strip()):
-								total += float(rate.contents[0])
+							value = rate.contents[0].strip().replace(',','')
+							if isfloat(value):
+								total += float(value)
 								num += 1
 			if num != 0:
 				insertRow[month] = total / num
@@ -58,4 +59,3 @@ currencies = ['Chinese Yuan', 'Euro', 'Japanese Yen', 'U.S. Dollar', 'Brazilian 
 
 for currency in currencies:
 	scrap(currency)
-
