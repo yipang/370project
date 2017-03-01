@@ -57,9 +57,8 @@ def scrap(currency):
 
 currencies = ['Chinese Yuan', 'Euro', 'Japanese Yen', 'U.S. Dollar', 'Brazilian Real', 'Indian Rupee', 'Canadian Dollar', 'Korean Won', 'Russian Ruble']
 
-#for currency in currencies:
-#	scrap(currency)
-scrap('Russian Ruble')
+for currency in currencies:
+	scrap(currency)
 
 
 
