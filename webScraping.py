@@ -59,3 +59,7 @@ currencies = ['Chinese Yuan', 'Euro', 'Japanese Yen', 'U.S. Dollar', 'Brazilian 
 
 for currency in currencies:
 	scrap(currency)
+
+
+
+
