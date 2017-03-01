@@ -55,11 +55,11 @@ def scrap(currency):
 	df.to_csv(fileName, sep='\t', encoding='utf-8')
 
 
-currencies = ['Chinese Yuan', 'Euro', 'Japanese Yen', 'U.S. Dollar', 'Brazilian Real', 'Indian Rupee', 'Canadian Dollar', 'Korean Won']
+currencies = ['Chinese Yuan', 'Euro', 'Japanese Yen', 'U.S. Dollar', 'Brazilian Real', 'Indian Rupee', 'Canadian Dollar', 'Korean Won', 'Russian Ruble']
 
-for currency in currencies:
-	scrap(currency)
-
+#for currency in currencies:
+#	scrap(currency)
+scrap('Russian Ruble')
 
 
 
