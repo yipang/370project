@@ -74,6 +74,14 @@ final.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = ma
   add_trace(y = masterCur$wellsfargo/3, name = "wells fargi") %>%
   add_trace(y = masterCur$unemployment, name = "unemploymentData")
 
+masterCur['avg'] <- (masterCur$Japan / 9 + masterCur$Canada * 6 + masterCur$European.Union * 6 + masterCur$Brazil * 6)/4
+#avg
+avg.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$avg, type = 'scatter', mode = 'lines', height="600", name = "avg") %>%
+  add_trace(y = masterCur$unemployment, name = "unemploymentData")
+avg.fit <-lm(unemploymentRate ~ avg, data = masterCur)
+summary(avg.fit)
+
+#final
 final.fit <- lm(unemploymentRate ~ masterCur$Japan + masterCur$European.Union + masterCur$Canada + masterCur$Brazil + masterCur$wellsfargo, data=masterCur)
 
 summary(final.fit)
