@@ -11,8 +11,8 @@ library(knitr);
 source('currency.R')
 ```
 
-## R Markdown
-
+## Report
+We want to exame the relationship of different country's currency with U.S unemployment rate. And be able to 
 
 ```{r echo=FALSE}
 kable(sum)
