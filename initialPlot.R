@@ -3,12 +3,12 @@ library(ggplot2)
 library(plotly)
 #setwd('desktop/370project')
 
-unemployment <- read.csv("updataUn.csv")
-wData <- read.csv("wfc.csv")
-bData <- read.csv("bac.csv")
-cData <- read.csv("citigroup.csv")
-hData <- read.csv("hsbc.csv")
-jData <- read.csv("jpm.csv")
+unemployment <- read.csv("data/bank/updataUn.csv")
+wData <- read.csv("data/bank/wfc.csv")
+bData <- read.csv("data/bank/bac.csv")
+cData <- read.csv("data/bank/citigroup.csv")
+hData <- read.csv("data/bank/hsbc.csv")
+jData <- read.csv("data/bank/jpm.csv")
 
 tryData <- data.frame(unemployment$unemployment.rate)
 colnames(tryData)[colnames(tryData)=="unemployment.unemployment.rate"] <- "un_rate"

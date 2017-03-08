@@ -5,6 +5,9 @@ library(plyr)
 
 masterCur <- read.csv('data/currency/MASTERCSV.csv')
 unemploy <- read.csv('data/unemployment/unemployment.csv')
+wellsfargo <- read.csv("data/bank/wfc.csv")
+wData <- rev(wellsfargo$Close)
+
 month <- colnames(unemploy)
 month <- month[2:13]
 year <- rownames(unemploy)
@@ -19,6 +22,7 @@ for( y in year){
 unemploymentData <- data.frame(unemploymentData)
 colnames(unemploymentData) <- "unemployment"
 masterCur['unemploymentRate'] <- unemploymentData['unemployment']
+masterCur['wellsfargo'] <- wData
 sum <- head(masterCur,3)
 #plot for india vs unempoyment rate'
 India.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$India, type = 'scatter', mode = 'lines', height="600", name = "India") %>%
@@ -62,5 +66,14 @@ EU.modLin <- lm(unemploymentRate ~ European.Union, data = masterCur)
 #EU.predict <-predict(EU.modLin,masterCur$European.Union,type="response")
 
 
-fit <- lm(unemploymentRate ~ masterCur$China + masterCur$European.Union + masterCur$Japan+masterCur$Canada, data=masterCur)
-summary(fit)
+##Final Fit
+final.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$Brazil * 6, type = 'scatter', mode = 'lines', height="600", name = "Brazil") %>%
+  add_trace( y = masterCur$Japan / 9, name = "Japan") %>%
+  add_trace(y = masterCur$Canada * 6, name = "Canada") %>%
+  add_trace(y = masterCur$European.Union * 6, name = "EU") %>%
+  add_trace(y = masterCur$wellsfargo/3, name = "wells fargi") %>%
+  add_trace(y = masterCur$unemployment, name = "unemploymentData")
+
+final.fit <- lm(unemploymentRate ~ masterCur$Japan + masterCur$European.Union + masterCur$Canada + masterCur$Brazil + masterCur$wellsfargo, data=masterCur)
+
+summary(final.fit)
