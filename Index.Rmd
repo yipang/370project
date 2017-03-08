@@ -1,0 +1,235 @@
+---
+title: "U.S Unemployment"
+author: "Fan&Yi&Sunho&Sanchya"
+date: "3/7/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr);
+source('currency.R')
+source('initialPlot.R')
+```
+
+## # Final Project - Unemployment and stock data from currency and banks
+
+## Purpose
+
+Unemployment trends has been a major player in both the political and financial realms of the United States. It is vital to keep track of unemployment as it has the potential to impact many people and industries in the country. Then we were looking for the possible factors that might affect the unemployment rate. Firstly, we thought stock would be a great factor, but it was also very broad. Then we chose the currency and financial banks as the main factor to analysis, since we think those two factors related the most to the companies and exporting and inporting problems. Our purpose is going to find a model to show how the currency stock and the bank company stock related to the unemployment rate. 
+
+## Dataset
+
+We have data downloaded from website https://data.bls.gov/timeseries/LNS14000000 to get the unemployment rate in the US from 2007 to 2016. For the stock rate for each banks and currency rate, we got the data from yahoo finance. https://finance.yahoo.com/industries/financial. We got the stock data for the top five companies monthly from the start of 2007 to the end of 2016. Our focus would on the 'close' rate for that.  
+
+### Bank vs U.S unemployment rate
+* **Variable names of the data**  
+
+wClose is the close price for Wells fargo, bClose is the close price for Bank of America, cClose is the close price for citigroup, hClose is the close price fo HSBC, and then jClose is the close price for JPMorgan, unemployment is just the unemployment rate each month.   
+
+```{r warning=FALSE, echo=FALSE}
+colnames(totalData)
+```
+
+After viewing this, we have a graph to plot how these stocks varies with the unemployment rate each month from 2007 to 2016. Then we got the first plot.   
+
+
+* **Plot of unemployment rate and bank stock changing each month**  
+
+```{r warning=FALSE, echo=FALSE}
+financial_plot
+```
+
+From this plot, we can actually see a basic trend that while bank stock is increasing, the unemployment is decreasing. However, while the bank stock is decreasing, the unemployment rate is increasing. Then we are thinking there might be some relationships between them, so we decided to do some modeling to check what is actually affecting them.   
+
+## Methods and Result   
+
+Linear regression was the first type of regression analysis to be studied rigorously, and to be used extensively in practical applications. This is because models which depend linearly on their unknown parameters are easier to fit than models which are non-linearly related to their parameters and because the statistical properties of the resulting estimators are easier to determine. We also find that linear regression model works good for continuous dataset. So that's why we chose linear regression model. 
+
+* **Linear regression model for Wells Fargo and unemployment rate**  
+
+```{r warning=FALSE, echo=FALSE}
+summary(wfit)
+plot(wfit)
+```
+
+From this summary, we can tell that estimate coefficient for Wells Fargo stock rate and unemployment is -0.11002, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Linear regression model for Bank of America and unemployment rate** 
+
+```{r warning=FALSE, echo=FALSE}
+summary(bfit)
+plot(bfit)
+```
+
+From this summary, we can tell that estimate coefficient for Bank of America stock rate and unemployment is -0.09013, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.   
+
+* **Linear regression model for Citigroup and unemployment rate**  
+
+```{r warning=FALSE, echo=FALSE}
+summary(cfit)
+plot(cfit)
+```
+
+From this summary, we can tell that estimate coefficient for Citigroup stock rate and unemployment is -0.070344, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Linear regression model for HSBC and unemployment rate**  
+
+```{r warning=FALSE, echo=FALSE}
+summary(hfit)
+plot(hfit)
+```
+
+From this summary, we can tell that estimate coefficient for HSBC stock rate and unemployment is -0.035376, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Linear regression model for JPMorgan and unemployment rate**   
+
+```{r warning=FALSE, echo=FALSE}
+summary(jfit)
+plot(jfit)
+```
+
+From this summary, we can tell that estimate coefficient for JPMorgan stock rate and unemployment is -0.10181, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Summary**  
+
+According to the summary of five linear models of five banks and unemployment rate, we find all of there stock rates really affecting the unemployment rate. And the Wells Fargo affect the unemployment rate the most, since it has the largest absolute coefficient value. Maybe due to it is ranked the first place at the stock marketing. 
+
+### Currency vs U.S unemployment rate
+We want to exame the relationship of different country's currency with U.S unemployment rate. And be able to pick one or two countries that would become the indicator for U.S unemployment rate. We picked: India, China, Japan, Canada, Russia, EU, Brazil, Korea. We picked these countries base on their perfermance on its ecomomic among the world abd also their relationship with the U.S. 
+
+## Methods and Result   
+As the same as Bank one, we are also going to use linear regression here. We exame each country and pick the most representative country. Next, let see which country has the most relevant relationship with U.S unemployment rate. To do that, we will draw the line chart, as well as calculate the slope and correlation for each country compare to the U.S unemployment rate.
+
+Below are the sample data we are going to use. 
+```{r echo=FALSE}
+kable(sum)
+```
+
+
+### India
+The line chart of India Currency vs U.S unemployment Rate
+```{r echo=FALSE}
+India.line
+```
+
+The correlation between India Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(India.modLin)
+```
+
+### Japan
+The line chart of Japan Currency vs U.S unemployment Rate
+```{r echo=FALSE}
+Japan.line
+```
+The correlation between Japan Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(Japan.modLin)
+```
+
+### China
+The line chart of China Currency vs U.S unemployment Rate
+```{r echo=FALSE}
+China.line
+```
+The correlation between China Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(China.modLin)
+```
+
+### Korea
+The line chart of Korea Currency vs U.S unemployment Rate
+```{r echo=FALSE}
+Korea.line
+```
+The correlation between Korea Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(Korea.modLin)
+```
+
+### Canada
+The line chart of Canada Currency vs U.S unemployment Rate
+```{r echo=FALSE}
+Canada.line
+```
+The correlation between Canada Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(Canada.modLin)
+```
+
+### Russia
+The line chart of Russia Currency vs U.S unemployment Rate
+```{r echo=FALSE}
+Russia.line
+```
+The correlation between Raussia Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(Russia.modLin)
+```
+
+### Brazil
+The line chart of Brazil Currency vs U.S unemployment Rate
+
+```{r echo=FALSE}
+Brazil.line
+```
+The correlation between Brazil Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(Brazil.modLin)
+```
+
+
+### EU
+The line chart of EU Currency vs U.S unemployment Rate
+
+```{r echo=FALSE}
+EU.line
+```
+The correlation between EU Currency and U.S enemployment Rate
+```{r echo=FALSE}
+summary(EU.modLin)
+```
+
+From the chart we can see, China, Canada, Brazil, EU has really strong relationship with the U.S unemployment rate. Base and those 4 country are actually from the four different geolocation, so it's a perfectly predicator to the U.S. unemployemnt rate. 
+Then we are going to use the 4 country with the 1 bank we pick priously to generate a final linear regression. 
+
+# Final Fit with Wells Fargo and the Four Country
+The line chart of 4 countries Currencym wells fargo stock prices vs U.S unemployment Rate
+We did some change with the original data to make it more presentable. We mutiple Canada, EU, Brazil's currency rate by 6, Divided wells fargo's stock prices by 3, leave the unempoyment and Chinese currency unchanged.
+Below is the graph of the map. 
+```{r echo=FALSE}
+final.line
+```
+The correlation between the currency, stock prices and U.S enemployment Rate
+We could see, from the line charts, the wells fargo is a good indicator for the unemployment rate, but it has smallest correlation compare to other 4 countries. 
+Also the below indicates the four countries don't show strong relationship with the unemployment if we going to do mutilinear regression, it won't work.
+```{r echo=FALSE}
+summary(final.fit)
+```
+
+So, then, we tried the average of the four contry:
+```{r echo=FALSE}
+avg.line
+```
+And it significant value and correlation line is below. 
+```{r echo=FALSE}
+summary(avg.fit)
+```
+
+Finally we pick the most influencial contry which is Canada, and did a linear regression agaain:
+```{r echo=FALSE}
+ff.line
+```
+
+
+
+```{r echo=FALSE}
+summary(ff.fit)
+```
+
+# Discussion and Result
+
+From our chart and the result of our linear regression, we find out that Canada, and wells fargo are the best indicators of U.S emoloyment Rate. We could also use the average of the four countries: Japan, Canada, Brazil, EU as an indicator as well.
+
+
