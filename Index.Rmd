@@ -203,6 +203,33 @@ final.line
 ```
 The correlation between the currency, stock prices and U.S enemployment Rate
 We could see, from the line charts, the wells fargo is a good indicator for the unemployment rate, but it has smallest correlation compare to other 4 countries. 
+Also the below indicates the four countries don't show strong relationship with the unemployment if we going to do mutilinear regression, it won't work.
 ```{r echo=FALSE}
 summary(final.fit)
 ```
+
+So, then, we tried the average of the four contry:
+```{r echo=FALSE}
+avg.line
+```
+And it significant value and correlation line is below. 
+```{r echo=FALSE}
+summary(avg.fit)
+```
+
+Finally we pick the most influencial contry which is Canada, and did a linear regression agaain:
+```{r echo=FALSE}
+ff.line
+```
+
+
+
+```{r echo=FALSE}
+summary(ff.fit)
+```
+
+# Discussion and Result
+
+From our chart and the result of our linear regression, we find out that Canada, and wells fargo are the best indicators of U.S emoloyment Rate. We could also use the average of the four countries: Japan, Canada, Brazil, EU as an indicator as well.
+
+
