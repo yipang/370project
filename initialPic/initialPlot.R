@@ -31,3 +31,20 @@ financial_plot <- plot_ly(x = wData$Date, y = wData$Close, type = 'scatter', mod
   layout(title = "",
          xaxis = list(title = "time"),
          yaxis = list(title = "unemployment rate change and stock"))
+
+#linear regression models
+wData['unemployment'] <- reverse$un_rate
+bData['unemployment'] <- reverse$un_rate
+cData['unemployment'] <- reverse$un_rate
+hData['unemployment'] <- reverse$un_rate
+jData['unemployment'] <- reverse$un_rate
+totalData <- wData[,c("Date","Close", "unemployment")]
+colnames(totalData)[colnames(totalData)=="Close"] <- "wClose"
+totalData['bClose'] <- bData$Close
+totalData['cClose'] <- cData$Close
+totalData['hClose'] <- hData$Close
+totalData['jClose'] <- jData$Close
+
+fit <- lm(unemployment ~ wClose  + bClose + cClose + hClose + jClose, data=totalData)
+summary(fit) # show results
+plot(fit)
