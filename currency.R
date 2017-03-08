@@ -92,3 +92,18 @@ ff.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = maste
   add_trace(y = masterCur$unemployment, name = "unemploymentData")
 ff.fit <-lm(unemploymentRate ~ Canada + wellsfargo, data = masterCur)
 summary(ff.fit)
+
+#predic
+#train <- c(0,0,0)
+#train <- data.frame(train)
+#train <- data.frame(runif(120, min = 0, max = 2))
+
+#train['bank'] <- data.frame(runif(120, min= 30, max = 70))
+#trainData <- data.frame(rename(train, c('runif.120..min...0..max...2.' = 'Canada', 'bank' = 'wellsfargo')))
+#trainData['result'] <- predict(ff.fit, trainData)
+#summary(predict)
+#predict.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = trainData$Canada * 6, type = 'scatter', mode = 'lines', height="600", name = "Canada") %>%
+#  add_trace(y = trainData$wellsfargo/3, name = "wells fargi") %>%
+#  add_trace(y = trainData$result, name = "unemploymentData")
+#predict.fit <-lm(result ~ Canada + wellsfargo, data = trainData)
+#summary(predict.fit)

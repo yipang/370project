@@ -223,10 +223,12 @@ ff.line
 ```
 
 
-
 ```{r echo=FALSE}
 summary(ff.fit)
 ```
+
+
+
 
 # Discussion and Result
 
