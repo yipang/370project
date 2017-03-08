@@ -1,0 +1,77 @@
+---
+title: "U.S Unemployment"
+author: "Fan&Yi&Sunho&Sanchya"
+date: "3/7/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr);
+source('currency.R')
+```
+
+## R Markdown
+
+
+```{r echo=FALSE}
+kable(sum)
+```
+
+## Including Plots
+
+### India
+```{r echo=FALSE}
+India.line
+
+India.modLin
+plot(India.modLin)
+```
+
+### Japan
+```{r echo=FALSE}
+Japan.line
+
+Japan.modLin
+plot(Japan.modLin)
+```
+
+### China
+```{r echo=FALSE}
+China.line
+
+China.modLin
+plot(China.modLin)
+```
+
+### Korea
+```{r echo=FALSE}
+Korea.line
+
+Korea.modLin
+plot(Korea.modLin)
+```
+
+### Canada
+```{r echo=FALSE}
+Canada.line
+
+Canada.modLin
+plot(Canada.modLin)
+```
+### Russia
+```{r echo=FALSE}
+Russia.line
+
+Russia.modLin
+plot(Russia.modLin)
+```
+
+### EU
+```{r echo=FALSE}
+EU.line
+
+EU.modLin
+plot(EU.modLin)
+```
+
