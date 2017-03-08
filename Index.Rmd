@@ -223,10 +223,22 @@ ff.line
 ```
 
 
-
 ```{r echo=FALSE}
 summary(ff.fit)
 ```
+
+# Prediction
+So we generate 120 pairs of random data, one for wells fargo, one for Canada to see how our model is doing. Below is the predicrion
+
+```{r echo=FALSE}
+predict.line
+```
+
+
+```{r echo=FALSE}
+summary(predict.fit)
+```
+
 
 # Discussion and Result
 
