@@ -1,0 +1,95 @@
+---
+title: "bankReport"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Final Project - Unemployment and stock data from currency and banks
+
+```{r warning=FALSE, echo=FALSE, message=FALSE}
+source('initialPlot.R')
+```
+
+## Purpose
+
+Unemployment trends has been a major player in both the political and financial realms of the United States. It is vital to keep track of unemployment as it has the potential to impact many people and industries in the country. Then we were looking for the possible factors that might affect the unemployment rate. Firstly, we thought stock would be a great factor, but it was also very broad. Then we chose the currency and financial banks as the main factor to analysis, since we think those two factors related the most to the companies and exporting and inporting problems. Our purpose is going to find a model to show how the currency stock and the bank company stock related to the unemployment rate. 
+
+## Dataset
+
+We have data downloaded from website https://data.bls.gov/timeseries/LNS14000000 to get the unemployment rate in the US from 2007 to 2016. For the stock rate for each banks, we got the data from yahoo finance. https://finance.yahoo.com/industries/financial. We got the stock data for the top five companies monthly from the start of 2007 to the end of 2016. Our focus would on the 'close' rate for that.   
+
+* **Variable names of the data**  
+
+wClose is the close price for Wells fargo, bClose is the close price for Bank of America, cClose is the close price for citigroup, hClose is the close price fo HSBC, and then jClose is the close price for JPMorgan, unemployment is just the unemployment rate each month.   
+
+```{r warning=FALSE, echo=FALSE}
+colnames(totalData)
+```
+
+After viewing this, we have a graph to plot how these stocks varies with the unemployment rate each month from 2007 to 2016. Then we got the first plot.   
+
+
+* **Plot of unemployment rate and bank stock changing each month**  
+
+```{r warning=FALSE, echo=FALSE}
+financial_plot
+```
+
+From this plot, we can actually see a basic trend that while bank stock is increasing, the unemployment is decreasing. However, while the bank stock is decreasing, the unemployment rate is increasing. Then we are thinking there might be some relationships between them, so we decided to do some modeling to check what is actually affecting them.   
+
+## Methods and Result   
+
+Linear regression was the first type of regression analysis to be studied rigorously, and to be used extensively in practical applications. This is because models which depend linearly on their unknown parameters are easier to fit than models which are non-linearly related to their parameters and because the statistical properties of the resulting estimators are easier to determine. We also find that linear regression model works good for continuous dataset. So that's why we chose linear regression model. 
+
+* **Linear regression model for Wells Fargo and unemployment rate**  
+
+```{r warning=FALSE, echo=FALSE}
+summary(wfit)
+plot(wfit)
+```
+
+From this summary, we can tell that estimate coefficient for Wells Fargo stock rate and unemployment is -0.11002, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Linear regression model for Bank of America and unemployment rate** 
+
+```{r warning=FALSE, echo=FALSE}
+summary(bfit)
+plot(bfit)
+```
+
+From this summary, we can tell that estimate coefficient for Bank of America stock rate and unemployment is -0.09013, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.   
+
+* **Linear regression model for Citigroup and unemployment rate**  
+
+```{r warning=FALSE, echo=FALSE}
+summary(cfit)
+plot(cfit)
+```
+
+From this summary, we can tell that estimate coefficient for Citigroup stock rate and unemployment is -0.070344, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Linear regression model for HSBC and unemployment rate**  
+
+```{r warning=FALSE, echo=FALSE}
+summary(hfit)
+plot(hfit)
+```
+
+From this summary, we can tell that estimate coefficient for HSBC stock rate and unemployment is -0.035376, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Linear regression model for JPMorgan and unemployment rate**   
+
+```{r warning=FALSE, echo=FALSE}
+summary(jfit)
+plot(jfit)
+```
+
+From this summary, we can tell that estimate coefficient for JPMorgan stock rate and unemployment is -0.10181, and it is pretty siginificant since Pr value is really small. Which indicates there's really some relation between them.  
+
+* **Summary**  
+
+According to the summary of five linear models of five banks and unemployment rate, we find all of there stock rates really affecting the unemployment rate. And the Wells Fargo affect the unemployment rate the most, since it has the largest absolute coefficient value. Maybe due to it is ranked the first place at the stock marketing. 
+
