@@ -45,6 +45,15 @@ totalData['cClose'] <- cData$Close
 totalData['hClose'] <- hData$Close
 totalData['jClose'] <- jData$Close
 
-fit <- lm(unemployment ~ wClose  + bClose + cClose + hClose + jClose, data=totalData)
-summary(fit) # show results
-plot(fit)
+wfit <- lm(unemployment ~ wClose, data = totalData)
+bfit <- lm(unemployment ~ bClose, data = totalData)
+cfit <- lm(unemployment ~ cClose, data = totalData)
+hfit <- lm(unemployment ~ hClose, data = totalData)
+jfit <- lm(unemployment ~ jClose, data = totalData)
+
+summary(wfit)
+summary(bfit)
+summary(cfit)
+summary(hfit)
+summary(jfit)
+
