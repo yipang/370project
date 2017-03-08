@@ -66,22 +66,29 @@ EU.modLin <- lm(unemploymentRate ~ European.Union, data = masterCur)
 #EU.predict <-predict(EU.modLin,masterCur$European.Union,type="response")
 
 
-##Final Fit
-final.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$Brazil * 6, type = 'scatter', mode = 'lines', height="600", name = "Brazil") %>%
-  add_trace( y = masterCur$Japan / 9, name = "Japan") %>%
-  add_trace(y = masterCur$Canada * 6, name = "Canada") %>%
-  add_trace(y = masterCur$European.Union * 6, name = "EU") %>%
-  add_trace(y = masterCur$wellsfargo/3, name = "wells fargi") %>%
-  add_trace(y = masterCur$unemployment, name = "unemploymentData")
+
 
 masterCur['avg'] <- (masterCur$Japan / 9 + masterCur$Canada * 6 + masterCur$European.Union * 6 + masterCur$Brazil * 6)/4
 #avg
 avg.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$avg, type = 'scatter', mode = 'lines', height="600", name = "avg") %>%
   add_trace(y = masterCur$unemployment, name = "unemploymentData")
-avg.fit <-lm(unemploymentRate ~ avg, data = masterCur)
+avg.fit <-lm(unemploymentRate ~ avg + wellsfargo, data = masterCur)
 summary(avg.fit)
 
-#final
+#final 4 countries
+##Final Fit
+final.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$Brazil * 6, type = 'scatter', mode = 'lines', height="600", name = "Brazil") %>%
+  add_trace( y = masterCur$Japan / 9, name = "Japan") %>%
+  add_trace(y = masterCur$Canada * 6, name = "Canada") %>%
+  add_trace(y = masterCur$European.Union * 6, name = "EU") %>%
+  add_trace(y = masterCur$wellsfargo/3, name = "wells fargo") %>%
+  add_trace(y = masterCur$unemployment, name = "unemploymentData")
 final.fit <- lm(unemploymentRate ~ masterCur$Japan + masterCur$European.Union + masterCur$Canada + masterCur$Brazil + masterCur$wellsfargo, data=masterCur)
-
 summary(final.fit)
+
+#canada vs wells fargo vs unemployment
+ff.line <- plot_ly(ggplot2::diamonds, x = masterCur$X, xaxis = 'date', y = masterCur$Canada * 6, type = 'scatter', mode = 'lines', height="600", name = "Canada") %>%
+  add_trace(y = masterCur$wellsfargo/3, name = "wells fargi") %>%
+  add_trace(y = masterCur$unemployment, name = "unemploymentData")
+ff.fit <-lm(unemploymentRate ~ Canada + wellsfargo, data = masterCur)
+summary(ff.fit)
